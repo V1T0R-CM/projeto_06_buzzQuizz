@@ -1,6 +1,6 @@
 .conteiner-criacao-quiz{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
@@ -11,8 +11,14 @@
 .conteiner-criacao-quiz h2{
     font-weight: 700;
     font-size: 24px;
-    margin-top: 140px;
     color:black;
+}
+
+.secao-info-basica{
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .caixa-info-quiz{
@@ -28,7 +34,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
-.caixa-info-quiz input{
+input{
     background: #FFFFFF;
     border: 1px solid #D1D1D1;
     border-radius: 5px;
@@ -36,7 +42,7 @@
     text-indent: 22px;
 }
 
-.caixa-info-quiz input::placeholder{
+input::placeholder{
     font-family: 'Roboto';
     font-style: italic;
     font-weight: 400;
@@ -54,6 +60,49 @@
     font-weight: 400;
     font-size: 20px;
     color: #FFF5F4;
+}
+
+.secao-cria-pergunta{
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.config-pergunta{
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    height: 65px;
+    width: 600px;
+    padding: 26px 16px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    overflow-y: hidden;
+    transition: height 1s;
+}
+
+.aberto{
+    height: 825px;
+}
+
+.config-pergunta h3{
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.info div{
+    height: 106px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.resp-incorreta div:last-child{
+    margin-bottom: 0px;
 }
 
 @media (max-width:600px){
