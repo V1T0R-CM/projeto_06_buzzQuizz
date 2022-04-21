@@ -50,7 +50,7 @@ input::placeholder{
     color: #BABABA;
 }
 
-.botao-confirma-infos{
+.botao-confirmacao{
     height: 54px;
     width: 368px;
     border-radius: 15px;
@@ -125,6 +125,7 @@ input::placeholder{
     .conteiner-criacao-quiz h2{
         margin-top: 106px;
     }
+    
     .caixa-info-quiz{
         width: 100%;
     }
