@@ -19,7 +19,7 @@
         <h1>BuzzQuizz</h1>
     </div>
     <div class="conteiner-criacao-quiz">
-        <div class="secao-info-basica desligado">
+        <div class="secao-info-basica">
             <h2>Comece pelo começo</h2>
             <div class="caixa-info-quiz">
                 <input class="titulo-quiz" type="text" placeholder="Título do seu quizz">
@@ -29,38 +29,9 @@
             </div>
             <button class="botao-confirma-infos" onclick="verificaInfo()">Prosseguir pra criar perguntas</button>
         </div>
-        <div class="secao-cria-pergunta">
+        <div class="secao-cria-pergunta desligado">
             <h2>Crie suas perguntas</h2>
-            <div class="config-pergunta aberto">
-                <div class="info pergunta">
-                    <h3>Pergunta 1</h3>
-                    <div>
-                        <input type="text" placeholder="Texto da pergunta">
-                        <input type="text" placeholder="Cor de fundo da pergunta">
-                    </div>
-                </div>
-                <div class="info resp-correta">
-                    <h3>Resposta correta</h3>
-                    <div>
-                        <input type="text" placeholder="Resposta correta">
-                        <input type="text" placeholder="URL da imagem">
-                    </div>
-                </div>
-                <div class="info resp-incorreta">
-                    <h3>Resposta incorreta</h3>
-                    <div>
-                        <input type="text" placeholder="Resposta incorreta 1">
-                        <input type="text" placeholder="URL da imagem 1">
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Resposta incorreta 2">
-                        <input type="text" placeholder="URL da imagem 2">
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Resposta incorreta 3">
-                        <input type="text" placeholder="URL da imagem 3">
-                    </div> 
-                </div>
+            <div class="lista-config-perguntas">
             </div>
         </div>
     </div>

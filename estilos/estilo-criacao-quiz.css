@@ -86,11 +86,27 @@ input::placeholder{
     height: 825px;
 }
 
+.aberto img{
+    display: none;
+}
+
 .config-pergunta h3{
     font-family: 'Roboto';
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.pergunta{
+    position: relative;
+}
+
+.pergunta img{
+    position: absolute;
+    right: 18px;
+    top:0;
+    height: 23px;
+    width: 26px;
 }
 
 .info div{
