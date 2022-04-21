@@ -29,13 +29,14 @@
         <button class="botao-confirma-infos">Prosseguir pra criar perguntas</button>
     </div> -->
     <div class="container-sucesso-quiz">
-        <div>Seu quizz está pronto!</div>
-        <div class="quiz">
+        <span>Seu quizz está pronto!</span>
+        <div class="quiz" onclick="acessarQuiz()">
             <img src="/imagens/logo.png" alt="Quizz">
             <span>Nome do quiz</span>
+            <div class="gradiente"></div>
         </div>
-        <button>Acessar Quizz</button>
-        <div>Voltar pra home</div>
+        <button onclick="acessarQuiz()">Acessar Quizz</button>
+        <div class="home" onclick="homePage()">Voltar pra home</div>
     </div>
 </body>
 </html>
