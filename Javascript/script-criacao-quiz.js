@@ -1,7 +1,6 @@
 const infoQuizz={}
 let quantPerguntas
 let nivelQuizz
-let listaPergunta=[]
 
 function verificaInfo(){
   infoQuizz.title=document.querySelector(".titulo-quiz").value
@@ -107,19 +106,55 @@ function ehHexadecimal(cor){
   return true
 }
 
+function pegaAlternativas(elemento){
+  const pattern = /^https:\/\//i;
+  let alternativas=[]
+  let infoAlternativaCorreta={}
+  infoAlternativaCorreta.text=elemento.querySelector(".resp-correta input:nth-child(1)").value
+  if(!pattern.test(elemento.querySelector(".resp-correta input:nth-child(2)").value)){
+    return false
+  }
+  infoAlternativaCorreta.image=elemento.querySelector(".resp-correta input:nth-child(2)").value
+  infoAlternativaCorreta.isCorrectAnswer=true
+  alternativas.push(infoAlternativaCorreta)
+  const listaAlternativasErradas=elemento.querySelectorAll(".resp-incorreta div")
+  let numValidas=3
+  for(let i=0; i<3;i++){
+    let infoAlternativa={}
+    infoAlternativa.text=listaAlternativasErradas[i].querySelector("input:nth-child(1)").value
+    if(!pattern.test(listaAlternativasErradas[i].querySelector("input:nth-child(2)").value)){
+      numValidas--
+    }
+    infoAlternativa.image=listaAlternativasErradas[i].querySelector("input:nth-child(2)").value
+    infoAlternativa.isCorrectAnswer=false
+    alternativas.push(infoAlternativa)
+  }
+  if(numValidas>=1){
+    return alternativas
+  }
+  return false
+}
 
 function verificaPerguntas(){
-  const pattern = /^https:\/\//i;
   infoQuizz.questions=[]
   const listaPerguntas=document.querySelectorAll(".config-pergunta")
-  for(let i=0; i<listaPergunta.length; i++){
+  for(let i=0; i<listaPerguntas.length; i++){
     let infoPergunta={}
-    let alternativas=[]
-    if(listaPergunta[i].querySelector(".pergunta input:nth-child(1)").value.length>20){
-      infoPergunta.title=listaPergunta[i].querySelector(".pergunta input:nth-child(1)").value
+    if(listaPerguntas[i].querySelector(".pergunta input:nth-child(1)").value.length<20){
+      alert("Preencha os dados corretamente")
+      break
     }
-    if(ehHexadecimal(listaPergunta[i].querySelector(".pergunta input:nth-child(2)").value)){
-      infoPergunta.color=listaPergunta[i].querySelector(".pergunta input:nth-child(2)").value
+    infoPergunta.title=listaPerguntas[i].querySelector(".pergunta input:nth-child(1)").value
+    if(!ehHexadecimal(listaPerguntas[i].querySelector(".pergunta input:nth-child(2)").value)){
+      alert("Preencha os dados corretamente")
+      break
     }
+    infoPergunta.color=listaPerguntas[i].querySelector(".pergunta input:nth-child(2)").value
+    if(pegaAlternativas(listaPerguntas[i])===false){
+      alert("Preencha os dados corretamente")
+      break
+    }
+    infoPergunta.answers=pegaAlternativas(listaPerguntas[i])
+    infoQuizz.questions.push(infoPergunta)
   }
 }

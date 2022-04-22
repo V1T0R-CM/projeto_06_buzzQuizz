@@ -1,7 +1,6 @@
 .conteiner-criacao-quiz{
     width: 100%;
     height: 100%;
-    background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,6 +14,7 @@
 }
 
 .secao-info-basica{
+    width: 100%;
     margin-top: 140px;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@ input::placeholder{
 
 .botao-confirmacao{
     height: 54px;
-    width: 368px;
+    width: 325px;
     border-radius: 15px;
     border:currentColor;
     background: #EC362D;
@@ -63,6 +63,7 @@ input::placeholder{
 }
 
 .secao-cria-pergunta{
+    width: 100%;
     margin-top: 140px;
     display: flex;
     flex-direction: column;
@@ -122,11 +123,15 @@ input::placeholder{
 }
 
 @media (max-width:600px){
-    .conteiner-criacao-quiz h2{
-        margin-top: 106px;
-    }
-    
     .caixa-info-quiz{
+        width: 100%;
+    }
+
+    .lista-config-perguntas{
+        width: 100%;
+    }
+
+    .config-pergunta{
         width: 100%;
     }
 }
