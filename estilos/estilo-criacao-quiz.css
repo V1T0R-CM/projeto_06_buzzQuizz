@@ -162,6 +162,16 @@ input::placeholder{
 .aberto img{
     display: none;
 }
+
+.lista-config-niveis textarea{
+    display: none;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    height: 46px;
+    text-indent: 22px;
+}
+
 @media (max-width:600px){
     .caixa-info-quiz{
         width: 100%;
@@ -173,5 +183,38 @@ input::placeholder{
 
     .config-pergunta{
         width: 100%;
+    }
+
+    .lista-config-niveis{
+       width: 100%; 
+    }
+
+    .config-nivel{
+        width: 100%;
+    }
+
+    .lista-config-niveis textarea{
+        display: initial;
+        height: 176px;
+        border-radius: 5px;
+        border: 1px solid #D1D1D1;
+        text-indent: 22px;
+    }
+
+    textarea::placeholder{
+        font-family: "Roboto";
+        font-style: italic;
+        font-weight: 400;
+        font-size: 20px;
+        color: #BABABA;
+        
+    }
+
+    .config-nivel.aberto{
+        height: 376px;
+    }
+
+    .config-nivel input:nth-child(4){
+        display: none;
     }
 }
