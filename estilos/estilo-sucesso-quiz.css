@@ -3,13 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #E5E5E5;
+    background-color: #FAFAFA;
 }
 .container-sucesso-quiz span {
     font-size: 20px;
     font-weight: 700;
 }
-.quiz {
+.preQuiz {
     width: 90%;
     min-height: 181px;
     margin: 30px 0px;
@@ -17,18 +17,18 @@
     position: relative;
 }
 .gradiente {
-    background-image: linear-gradient(to top, rgba(0,0,0,0.3), rgba(255,255,255,0.3));
+    background-image: linear-gradient(to top, rgb(0, 0, 0), rgba(255,255,255,0.3));
     height: 100%;
     width: 100%;
     position: absolute;
 }
-.quiz img {
+.preQuiz img {
     width: 100%;
     height: 100%;
     object-fit: scale-down;
     position: absolute;
 }
-.quiz span {
+.preQuiz span {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -47,12 +47,12 @@
     color: #FFF5F4;
     font-size: 18px;
 }
-.home {
+.voltaHome {
     margin: 10px 0px;
     color: #818181;
     font-size: 18px;
 }
-.quiz:hover {
+.preQuiz:hover {
     cursor: pointer;
 }
 .container-sucesso-quiz button:hover {
@@ -69,7 +69,7 @@
     .container-sucesso-quiz span{
         font-size: 23px;
     }
-    .quiz {
+    .preQuiz {
         width: 500px;
         height: 266px;
         margin: 50px 0px;

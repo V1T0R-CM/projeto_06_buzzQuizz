@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Roboto';
 }
 
 .conteiner-criacao-quiz h2{
