@@ -8,11 +8,11 @@ function verificaInfo(){
   quantPerguntas=document.querySelector(".quant-perguntas").value
   nivelQuizz=document.querySelector(".quant-niveis").value
   let valido=true
-  const pattern = /^https:\/\//i;
+  const urlR = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
   if(infoQuizz.title.length>65 ||infoQuizz.title.length<20){
     valido=false
   }
-  if(!pattern.test(infoQuizz.image)){
+  if(!urlR.test(infoQuizz.image)){
     valido=false
   }
   if(Number(quantPerguntas)<3){
@@ -107,11 +107,11 @@ function ehHexadecimal(cor){
 }
 
 function pegaAlternativas(elemento){
-  const pattern = /^https:\/\//i;
+  const urlR = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
   let alternativas=[]
   let infoAlternativaCorreta={}
   infoAlternativaCorreta.text=elemento.querySelector(".resp-correta input:nth-child(1)").value
-  if(!pattern.test(elemento.querySelector(".resp-correta input:nth-child(2)").value)){
+  if(!urlR.test(elemento.querySelector(".resp-correta input:nth-child(2)").value)){
     return false
   }
   infoAlternativaCorreta.image=elemento.querySelector(".resp-correta input:nth-child(2)").value
@@ -121,10 +121,10 @@ function pegaAlternativas(elemento){
   let numValidas=3
   for(let i=0; i<3;i++){
     let infoAlternativa={}
-    infoAlternativa.text=listaAlternativasErradas[i].querySelector("input:nth-child(1)").value
-    if(!pattern.test(listaAlternativasErradas[i].querySelector("input:nth-child(2)").value)){
+    if(!urlR.test(listaAlternativasErradas[i].querySelector("input:nth-child(2)").value) || listaAlternativasErradas[i].querySelector("input:nth-child(1)").value===""){
       numValidas--
     }
+    infoAlternativa.text=listaAlternativasErradas[i].querySelector("input:nth-child(1)").value
     infoAlternativa.image=listaAlternativasErradas[i].querySelector("input:nth-child(2)").value
     infoAlternativa.isCorrectAnswer=false
     alternativas.push(infoAlternativa)
