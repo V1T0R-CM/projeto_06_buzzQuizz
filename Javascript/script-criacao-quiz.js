@@ -32,7 +32,7 @@ function verificaInfo(){
 }
 
 function criaConfigPerguntas(){
-  for(let i=0; i<quantPerguntas; i++){
+  for(let i=0; i<Number(quantPerguntas); i++){
     document.querySelector(".lista-config-perguntas").innerHTML+=`
     <div class="config-pergunta">
       <div class="info pergunta">
@@ -76,6 +76,15 @@ function abrirConfigPergunta(elemento){
   const elementoPai=elemento.parentNode
   const elementoVo=elementoPai.parentNode
   elementoVo.classList.add("aberto")
+}
+
+
+function abrirConfigNivel(elemento){
+  if(document.querySelector(".lista-config-niveis .aberto")!== null){
+    document.querySelector(".lista-config-niveis .aberto").classList.remove("aberto");
+  }
+  const elementoPai=elemento.parentNode
+  elementoPai.classList.add("aberto")
 }
 
 function ehHexadecimal(cor){
@@ -138,23 +147,50 @@ function pegaAlternativas(elemento){
 function verificaPerguntas(){
   infoQuizz.questions=[]
   const listaPerguntas=document.querySelectorAll(".config-pergunta")
+  let valido=true
   for(let i=0; i<listaPerguntas.length; i++){
     let infoPergunta={}
     if(listaPerguntas[i].querySelector(".pergunta input:nth-child(1)").value.length<20){
-      alert("Preencha os dados corretamente")
+      valido=false
       break
     }
     infoPergunta.title=listaPerguntas[i].querySelector(".pergunta input:nth-child(1)").value
     if(!ehHexadecimal(listaPerguntas[i].querySelector(".pergunta input:nth-child(2)").value)){
-      alert("Preencha os dados corretamente")
+      valido=false
       break
     }
     infoPergunta.color=listaPerguntas[i].querySelector(".pergunta input:nth-child(2)").value
     if(pegaAlternativas(listaPerguntas[i])===false){
-      alert("Preencha os dados corretamente")
+      valido=false
       break
     }
     infoPergunta.answers=pegaAlternativas(listaPerguntas[i])
     infoQuizz.questions.push(infoPergunta)
+  }
+  if(valido){
+    document.querySelector(".secao-cria-pergunta").classList.add("desligado")
+    document.querySelector(".secao-cria-niveis").classList.remove("desligado")
+    criaConfigNiveis()
+  }
+  else{
+    alert("Preencha os dados corretamente")
+  }
+}
+
+function criaConfigNiveis(){
+  console.log("Tentativa")
+  for(let i=0; i<Number(nivelQuizz); i++){
+    console.log(i+1)
+    document.querySelector(".lista-config-niveis").innerHTML+=`
+    <div class="config-nivel">
+      <h3>Nível ${i+1}</h3>
+      <img src="./imagens/editar.png" alt="Botão de edição" onclick="abrirConfigNivel(this)"/>
+      <div>
+          <input type="text" placeholder="Título do nível">
+          <input type="text" placeholder="% de acerto mínima">
+          <input type="text" placeholder="URL da imagem do nível">
+          <input type="text" placeholder="Descrição do nível">
+      </div>
+    </div>`
   }
 }
