@@ -27,6 +27,11 @@ h1{
     color:white;
 }
 
+h1:hover{
+    cursor: pointer;
+}
+
+
 h6 {
     font-size: 18px;
     font-weight: 700;

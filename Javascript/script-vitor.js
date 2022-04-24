@@ -2,9 +2,37 @@ const infoQuizz={}
 let quantPerguntas
 let nivelQuizz
 
+
+function criaConteinerQuizProprios(){
+  if(localStorage.getItem("listaQuizz")!==null){
+      document.querySelector(".privadosQuizz").classList.remove("vazio")
+      document.querySelector(".privadosQuizz").innerHTML=`
+      <div>
+          <span>Seus Quizzes   </span> 
+          <ion-icon name="add-circle" onclick="abreJanelaCriacao()"></ion-icon>
+      </div>
+      `
+      //chamar a função que vai renderizar os quiz do local storage
+  }
+}
+
 function abreJanelaCriacao(){
   document.querySelector(".home").classList.add("desligado")
   document.querySelector(".conteiner-criacao-quiz").classList.remove("desligado")
+  criaFormInfoQuiz()
+}
+
+function criaFormInfoQuiz(){
+  document.querySelector(".secao-info-basica").innerHTML=`
+  <h2>Comece pelo começo</h2>
+  <div class="caixa-info-quiz">
+      <input class="titulo-quiz" type="text" placeholder="Título do seu quizz">
+      <input class="imagem-quiz" type="text" placeholder="URL da imagem do seu quizz">
+      <input class="quant-perguntas" type="number" placeholder="Quantidade de perguntas do quizz">
+      <input class="quant-niveis" type="number" placeholder="Quantidade de níveis do quizz">
+  </div>
+  <button class="botao-confirmacao" onclick="verificaInfo()">Prosseguir pra criar perguntas</button>
+  `
 }
 
 function verificaInfo(){
@@ -244,9 +272,20 @@ function verificaNivel(){
     infoQuizz.levels.push(infoNivel)
   }
   if(valido && minZero){
-    //chamar a função que vai enviar os dados obtidos para a API
+    const promisse= axius.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",infoQuizz)
+    promisse.then(sucessoCriarQuiz);
   }
   else{
     alert("Preencha os dados corretamente")
   }
+}
+
+function acessarHome(){
+  document.querySelector(".conteiner-criacao-quiz").classList.add("desligado")
+  console.log("foi")
+  document.location.reload()
+}
+
+function reiniciaQuiz(){
+  //
 }

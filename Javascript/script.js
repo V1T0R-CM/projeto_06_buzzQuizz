@@ -1,5 +1,3 @@
-//depois do Post do quizz: promisse.then(sucessoCriarQuiz);
-
 let renderizadorHome = document.querySelector(".caixaQuiz");
 let idQuiz;
 let objetoQuiz = {};
