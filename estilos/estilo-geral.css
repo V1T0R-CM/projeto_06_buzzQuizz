@@ -11,6 +11,10 @@ body {
     align-items: center;
 }
 
+.ligado {
+    display: initial;
+}
+
 .barra-topo{
     width: 100%;
     height: 70px;

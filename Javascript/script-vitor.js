@@ -17,12 +17,14 @@ function criaConteinerQuizProprios(){
 }
 
 function abreJanelaCriacao(){
+  document.querySelector(".home").classList.remove("ligado")
   document.querySelector(".home").classList.add("desligado")
   document.querySelector(".conteiner-criacao-quiz").classList.remove("desligado")
   criaFormInfoQuiz()
 }
 
 function criaFormInfoQuiz(){
+  document.querySelector(".conteiner-criacao-quiz").classList.add("ligado")
   document.querySelector(".secao-info-basica").innerHTML=`
   <h2>Comece pelo começo</h2>
   <div class="caixa-info-quiz">
@@ -280,12 +282,41 @@ function verificaNivel(){
   }
 }
 
-function acessarHome(){
-  document.querySelector(".conteiner-criacao-quiz").classList.add("desligado")
-  console.log("foi")
-  document.location.reload()
-}
-
-function reiniciaQuiz(){
-  //
+function reiniciarQuiz(){
+  window.scrollTo(0,0);
+  for (let i = 0; i < objetoQuiz.length; i ++) {
+    if (idQuiz == objetoQuiz[i].id) {
+        perguntasQuiz = objetoQuiz[i].questions
+        document.querySelector(".quiz").innerHTML = `
+            <div class="topoQuiz">
+                <img src=${objetoQuiz[i].image} alt="img" />
+                <span>${objetoQuiz[i].title}</span>
+                <div class="pelicula"></div>
+            </div>`;
+        for (let j = 0; j < perguntasQuiz.length; j ++) {
+            document.querySelector(".quiz").innerHTML += `
+                <div class="perguntaQuiz">
+                    <div class="tituloPergunta">${objetoQuiz[i].questions[j].title}</div>
+                    <div class="grupo">`
+            for (let k = 0; k < perguntasQuiz[j].length; k ++) {
+                document.querySelector(".quiz").innerHTML += `
+                        <div class="element">
+                            <img src=${perguntasQuiz[j].answer[k].image} alt="img" />
+                            <h6>${perguntasQuiz[j].answer[k].text}</h6>
+                        </div>`
+            }
+            document.querySelector(".quiz").innerHTML +=
+                    `</div>
+                </div>`
+        }
+        document.querySelector(".quiz").innerHTML +=`
+            <div class="perguntaQuiz">
+                <div class="tituloPergunta">${objetoQuiz[i].levels[0].title}</div>
+                <img src=${objetoQuiz[i].levels[0].image} alt="img" />
+                <h6>${objetoQuiz[i].levels[0].text}</h6>
+            </div>
+            <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
+            <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
+    }
+  }
 }
