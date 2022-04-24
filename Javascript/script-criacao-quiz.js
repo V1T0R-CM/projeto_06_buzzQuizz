@@ -187,7 +187,7 @@ function criaConfigNiveis(){
       <img src="./imagens/editar.png" alt="Botão de edição" onclick="abrirConfigNivel(this)"/>
       <div>
           <input type="text" placeholder="Título do nível">
-          <input type="text" placeholder="% de acerto mínima">
+          <input type="number" placeholder="% de acerto mínima">
           <input type="text" placeholder="URL da imagem do nível">
           <input type="text" placeholder="Descrição do nível">
           <textarea placeholder="Descrição do nível"></textarea>
