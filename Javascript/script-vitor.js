@@ -280,12 +280,6 @@ function verificaNivel(){
   }
 }
 
-function acessarHome(){
-  document.querySelector(".conteiner-criacao-quiz").classList.add("desligado")
-  console.log("foi")
-  document.location.reload()
-}
-
 function reiniciaQuiz(){
   //
 }
