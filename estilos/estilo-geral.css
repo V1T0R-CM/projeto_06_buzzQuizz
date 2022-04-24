@@ -36,7 +36,7 @@ h1:hover{
 }
 
 h6 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
 }
 
@@ -71,13 +71,12 @@ h6 {
     display: none;
 }
 
-.ligado {
-    display: initial;
-}
-
 @media (max-width: 1100px) {
     .home {
         width: 100%;
         padding: 0px 17px;
+    }
+    h6 {
+        font-size: 13px;
     }
 }

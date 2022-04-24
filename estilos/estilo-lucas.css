@@ -37,15 +37,17 @@
 
 .quiz {
     margin-top: 70px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 .topoQuiz {
     width: 100%;
-    height: 142px;
+    height: 227px;
     position: relative;
+    top: 0;
+    left: 0;
 }
 .topoQuiz img {
     width: 100%;
@@ -59,65 +61,79 @@
     top: 50%;
     transform: translate(-50%,-50%);
     color: #ffffff;
-    font-size: 23px;
+    font-size: 39px;
     font-weight: 400;
     z-index: 1;
     text-align: center;
 }
 .perguntaQuiz {
-    width: 100%;
-    margin-top: 28px;
-    padding: 20px;
+    width: 759px;
+    margin-top: 42px;
+    padding: 30px 35px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 .tituloPergunta {
     background-color: #EC362D;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 700;
     color: #ffffff;
     display: flex;
     text-align: center;
-    align-items: center;
     justify-content: center;
-    height: 89px;
-    margin-bottom: 15px;
-    padding: 10px;
+    align-items: center;
+    height: 138px;
+    margin-bottom: 20px;
+    padding: 20px;
     word-break: break-all;
 }
 .grupo {
-    margin-bottom: 15px;
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 .element {
-    width: 48%;
-}
-.element:first-child {
-    margin-right: 15px;
+    width: 330px;
+    margin-bottom: 20px;
 }
 .element img {
     width: 100%;
-    height: auto;
-    margin-bottom: 5px;
+    height: 175px;
+    margin-bottom: 8px;
+    object-fit: cover;
 }
-.perguntaQuiz > img {
-    width: 100%;
+.nivelFinal {
+    display: flex;
 }
-.perguntaQuiz > h6 {
-    margin-top: 10px;
-    font-size: 14px;
+.nivelFinal img {
+    width: 364px;
+    height: 273px;
+    object-fit: cover;
+}
+.nivelFinal h6 {
+    font-size: 19px;
+    margin-left: 15px;
+    flex-wrap: wrap;
+    word-break: break-all;
 }
 .quiz button {
     background-color: #EC362D;
     border-radius: 15px;
-    width: 220px;
-    height: 44px;
+    width: 260px;
+    height: 52px;
     border: none;
     color: #FFF5F4;
-    font-size: 18px;
-    margin: 35px 0px 8px 0px;
+    font-size: 21px;
+    margin: 57px 0px 8px 0px;
 }
+.voltaHome {
+    margin-bottom: 85px;
+    color: #818181;
+    font-size: 18px;
+}
+
 .container-sucesso-quiz {
     margin-top: 110px;
     display: flex;
@@ -129,7 +145,6 @@
     font-size: 20px;
     font-weight: 700;
 }
-
 .container-sucesso-quiz button {
     background-color: #EC362D;
     border-radius: 15px;
@@ -137,11 +152,6 @@
     height: 44px;
     border: none;
     color: #FFF5F4;
-    font-size: 18px;
-}
-.voltaHome {
-    margin: 10px 0px;
-    color: #818181;
     font-size: 18px;
 }
 .preQuiz:hover {
@@ -164,5 +174,51 @@
         width: 100%;
         position: relative;
         word-break: break-all;
+    }
+    .topoQuiz {
+        width: 100%;
+        height: 142px;
+    }
+    .topoQuiz span {
+        font-size: 19px;
+    }
+    .perguntaQuiz {
+        width: 100%;
+        margin-top: 24px;
+        padding: 18px;
+    }
+    .tituloPergunta {
+        font-size: 19px;
+        height: 89px;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    .element {
+        width: 48%;
+        margin-bottom: 10px;
+    }
+    .element img {
+        max-height: 113px;
+        margin-bottom: 5px;
+    }
+    .nivelFinal {
+        flex-direction: column;
+    }
+    .nivelFinal img {
+        width: 100%;
+        max-height: 255px;
+    }
+    .nivelFinal h6 {
+        font-size: 17px;
+        margin-top: 9px;
+    }
+    .quiz button {
+        width: 50%;
+        height: 44px;
+        font-size: 18px;
+        margin-top: 34px;
+    }
+    .voltaHome {
+        margin-bottom: 66px;
     }
 }

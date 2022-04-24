@@ -41,26 +41,27 @@ function acessarQuiz(elemento) {
                     <div class="pelicula"></div>
                 </div>`;
             for (let j = 0; j < perguntasQuiz.length; j ++) {
-                document.querySelector(".quiz").innerHTML += `
-                    <div class="perguntaQuiz">
-                        <div class="tituloPergunta">${objetoQuiz[i].questions[j].title}</div>
-                        <div class="grupo">`
-                for (let k = 0; k < perguntasQuiz[j].length; k ++) {
-                    document.querySelector(".quiz").innerHTML += `
+                let complemento = "";
+                for (let k = 0; k < perguntasQuiz[j].answers.length; k ++) {
+                    complemento += `
                             <div class="element">
-                                <img src=${perguntasQuiz[j].answer[k].image} alt="img" />
-                                <h6>${perguntasQuiz[j].answer[k].text}</h6>
+                                <img src=${perguntasQuiz[j].answers[k].image} alt="img" />
+                                <h6>${perguntasQuiz[j].answers[k].text}</h6>
                             </div>`
                 }
-                document.querySelector(".quiz").innerHTML +=
-                        `</div>
+                document.querySelector(".quiz").innerHTML += `
+                    <div class="perguntaQuiz">
+                        <div class="tituloPergunta" style="background-color: ${objetoQuiz[i].questions[j].color};">${objetoQuiz[i].questions[j].title}</div>
+                        <div class="grupo">${complemento}</div>
                     </div>`
             }
             document.querySelector(".quiz").innerHTML +=`
                 <div class="perguntaQuiz">
                     <div class="tituloPergunta">${objetoQuiz[i].levels[0].title}</div>
-                    <img src=${objetoQuiz[i].levels[0].image} alt="img" />
-                    <h6>${objetoQuiz[i].levels[0].text}</h6>
+                    <div class="nivelFinal">
+                        <img src=${objetoQuiz[i].levels[0].image} alt="img" />
+                        <h6>${objetoQuiz[i].levels[0].text}</h6>
+                    </div>
                 </div>
                 <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
                 <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
@@ -68,6 +69,7 @@ function acessarQuiz(elemento) {
     }
     document.querySelector(".quiz").classList.remove("desligado");
     document.querySelector(".quiz").classList.add("ligado");
+    document.querySelector("body").scrollIntoView()
 }
 function sucessoCriarQuiz() {
 
@@ -89,7 +91,6 @@ function sucessoCriarQuiz() {
 
 
 function sairPagina() {
-    console.log(document.querySelector(".ligado"))
     document.querySelector(".ligado").classList.add("desligado");
     document.querySelector(".ligado").classList.remove("ligado");
     acessarHome();
