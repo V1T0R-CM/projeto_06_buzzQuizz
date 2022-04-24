@@ -75,9 +75,6 @@ h6 {
     display: none;
 }
 
-.ligado {
-    display: initial;
-}
 @media (max-width: 1100px) {
     .home {
         width: 100%;
