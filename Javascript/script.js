@@ -3,6 +3,7 @@
 let renderizadorHome = document.querySelector(".caixaQuiz");
 let idQuiz;
 let objetoQuiz = {};
+let perguntasQuiz = {};
 
 function acessarHome () {
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
@@ -25,11 +26,12 @@ function randomizar() {
     return Math.random() - 0.5;
 }
 function acessarQuiz(elemento) {
-    console.log(objetoQuiz)
     document.querySelector(".home").classList.add("desligado");
     idQuiz = elemento.classList[1].replace("a","");
     for (let i = 0; i < objetoQuiz.length; i ++) {
         if (idQuiz == objetoQuiz[i].id) {
+            perguntasQuiz = objetoQuiz[i].questions
+            console.log(perguntasQuiz)
             document.querySelector(".quiz").innerHTML = `
                 <div class="topoQuiz">
                     <img src=${objetoQuiz[i].image} alt="img" />
