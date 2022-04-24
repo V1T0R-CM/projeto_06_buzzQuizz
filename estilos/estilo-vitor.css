@@ -17,12 +17,6 @@ button:hover{
     cursor: pointer;
 }
 
-.home{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .privadosQuiz{
     width: 1050px;
     height: 180px;

@@ -1,5 +1,5 @@
 .todosQuiz {
-    margin-top: 38px;
+    margin-top: 77px;
 }
 .titulo {
     font-size: 20px;
@@ -34,8 +34,6 @@
     font-weight: 400;
     z-index: 1;
 }
-
-
 
 .quiz {
     margin-top: 70px;
@@ -132,7 +130,6 @@
     font-weight: 700;
 }
 
-
 .container-sucesso-quiz button {
     background-color: #EC362D;
     border-radius: 15px;
@@ -152,4 +149,20 @@
 }
 .container-sucesso-quiz button:hover {
     cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .todosQuiz {
+        margin-top: 35px;
+        width: 100%;
+    }
+    .caixaQuiz {
+        width: 100%;
+    }
+    .preQuiz {
+        margin-top: 12px;
+        width: 100%;
+        position: relative;
+        word-break: break-all;
+    }
 }
