@@ -1,0 +1,63 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.privadosQuiz{
+    width: 1050px;
+    height: 180px;
+    margin-top: 146px;
+}
+.privadosQuiz span{
+    font-weight: 700;
+    font-size: 20px;
+    color: black;
+}
+
+.privadosQuiz ion-icon{
+    color:#EC362D;
+    font-size: 30px;
+}
+
+.privadosQuiz div{
+    display: flex;
+    align-items: center;
+}
+
+.privadosQuiz.vazio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px dashed #D5D5D5;;
+    border-radius: 5px;
+}
+
+.privadosQuiz.vazio h3{
+    font-weight: 400;
+    font-size: 20px;
+    color: #B9B9B9;
+    text-align: center;
+}
+
+.privadosQuiz.vazio button{
+    background-color: #fafafa;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    width: 150px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 21px;
+    color: #EC362D;
+}
+
+@media(max-width:1100px){
+    .privadosQuiz.vazio{
+        width: 95%;
+    }
+
+    .privadosQuiz div{
+        justify-content: space-between;
+    }
+}

@@ -2,6 +2,11 @@ const infoQuizz={}
 let quantPerguntas
 let nivelQuizz
 
+function abreJanelaCriacao(){
+  document.querySelector(".home").classList.add("desligado")
+  document.querySelector(".conteiner-criacao-quiz").classList.remove("desligado")
+}
+
 function verificaInfo(){
   infoQuizz.title=document.querySelector(".titulo-quiz").value
   infoQuizz.image=document.querySelector(".imagem-quiz").value
