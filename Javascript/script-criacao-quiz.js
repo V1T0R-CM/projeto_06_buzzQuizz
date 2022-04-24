@@ -8,7 +8,7 @@ function verificaInfo(){
   quantPerguntas=document.querySelector(".quant-perguntas").value
   nivelQuizz=document.querySelector(".quant-niveis").value
   let valido=true
-  const urlR = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+  const urlR = /^https:\/\//i;
   if(infoQuizz.title.length>65 ||infoQuizz.title.length<20){
     valido=false
   }
@@ -116,7 +116,7 @@ function ehHexadecimal(cor){
 }
 
 function pegaAlternativas(elemento){
-  const urlR = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+  const urlR = /^https:\/\//i;
   let alternativas=[]
   let infoAlternativaCorreta={}
   infoAlternativaCorreta.text=elemento.querySelector(".resp-correta input:nth-child(1)").value
@@ -178,9 +178,7 @@ function verificaPerguntas(){
 }
 
 function criaConfigNiveis(){
-  console.log("Tentativa")
   for(let i=0; i<Number(nivelQuizz); i++){
-    console.log(i+1)
     document.querySelector(".lista-config-niveis").innerHTML+=`
     <div class="config-nivel">
       <h3>Nível ${i+1}</h3>
@@ -193,5 +191,55 @@ function criaConfigNiveis(){
           <textarea placeholder="Descrição do nível"></textarea>
       </div>
     </div>`
+  }
+}
+
+function verificaNivel(){
+  infoQuizz.levels=[]
+  const urlR = /^https:\/\//i;
+  const largura = window.screen.width
+  const listaNiveis=document.querySelectorAll(".config-nivel")
+  let valido=true
+  let minZero=false
+  for(let i=0; i<listaNiveis.length; i++){
+    let infoNivel={}
+    if(listaNiveis[i].querySelector("input:nth-child(1)").value.length<10){
+      valido=false
+      break
+    }
+    infoNivel.title=listaNiveis[i].querySelector("input:nth-child(1)").value
+    if(!urlR.test(listaNiveis[i].querySelector("input:nth-child(3)").value)){
+      valido=false
+      break
+    }
+    if(Number(listaNiveis[i].querySelector("input:nth-child(2)").value)<0 || Number(listaNiveis[i].querySelector("input:nth-child(2)").value)>100){
+      valido=false
+      break
+    }
+    infoNivel.minValue=listaNiveis[i].querySelector("input:nth-child(2)").value
+    if(Number(listaNiveis[i].querySelector("input:nth-child(2)").value)===0){
+      minZero=true
+    }
+    if (largura>600){
+      if(listaNiveis[i].querySelector("input:nth-child(4)").value==="" || listaNiveis[i].querySelector("input:nth-child(4)").value.length<30){
+        valido=false
+        break
+      }
+      infoNivel.text=listaNiveis[i].querySelector("input:nth-child(4)").value
+    }
+    else{
+      if(listaNiveis[i].querySelector("textarea").value==="" || listaNiveis[i].querySelector("textarea").value.length<30){
+        valido=false
+        break
+      }
+      infoNivel.text=listaNiveis[i].querySelector("textarea").value
+    }
+    infoQuizz.levels.push(infoNivel)
+  }
+  if(valido && minZero){
+    //chamar a função que vai enviar os dados obtidos para a API
+  }
+  else{
+    alert("Preencha os dados corretamente")
   }
 }

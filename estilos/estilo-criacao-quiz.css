@@ -193,6 +193,9 @@ input::placeholder{
         width: 100%;
     }
 
+    .config-nivel div{
+        height: 284px;
+    }
     .lista-config-niveis textarea{
         display: initial;
         height: 176px;
