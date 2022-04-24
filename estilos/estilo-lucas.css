@@ -1,15 +1,19 @@
 .todosQuiz {
-    width: 100%;
     margin-top: 38px;
-    padding: 18px;
 }
 .titulo {
     font-size: 20px;
     font-weight: 700;
 }
+.caixaQuiz {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 .preQuiz {
-    min-height: 181px;
-    margin: 15px 0px;
+    margin-top: 12px;
+    height: 181px;
+    width: 340px;
     position: relative;
     word-break: break-all;
 }
@@ -148,33 +152,4 @@
 }
 .container-sucesso-quiz button:hover {
     cursor: pointer;
-}
-.home:hover {
-    cursor: pointer;
-}
-
-@media (min-width: 1100px) {
-    .caixaQuiz {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .preQuiz {
-        width: 340px;
-        margin: 12px 16px;
-    }
-
-
-    .quiz {
-        width: 759px;
-    }
-    .container-sucesso-quiz {
-        margin-top: 140px;
-    }
-    .container-sucesso-quiz span{
-        font-size: 23px;
-    }
-
-    .container-sucesso-quiz button {
-        font-size: 21px;
-    }
 }

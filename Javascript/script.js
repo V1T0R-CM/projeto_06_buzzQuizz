@@ -8,6 +8,7 @@ function acessarHome () {
     promise.then(renderizarHome)
 }
 function renderizarHome (resposta) {
+    document.querySelector(".home").classList.add("ligado");
     document.querySelector(".home").classList.remove("desligado");
     renderizadorHome.innerHTML = ""
     objetoQuiz = resposta.data
@@ -20,58 +21,54 @@ function renderizarHome (resposta) {
             </div>`
     }
 }
+
+
+
 function randomizar() {
     return Math.random() - 0.5;
 }
 function acessarQuiz(elemento) {
-    document.querySelector(".home").classList.add("desligado");
+    document.querySelector(".ligado").classList.add("desligado");
+    document.querySelector(".ligado").classList.remove("ligado");
     idQuiz = elemento.classList[1].replace("a","");
     for (let i = 0; i < objetoQuiz.length; i ++) {
         if (idQuiz == objetoQuiz[i].id) {
             perguntasQuiz = objetoQuiz[i].questions
-            console.log(perguntasQuiz)
             document.querySelector(".quiz").innerHTML = `
                 <div class="topoQuiz">
                     <img src=${objetoQuiz[i].image} alt="img" />
                     <span>${objetoQuiz[i].title}</span>
                     <div class="pelicula"></div>
                 </div>`;
-            for (let j = 0; j < objetoQuiz[i].questions.length; j ++) {
+            for (let j = 0; j < perguntasQuiz.length; j ++) {
                 document.querySelector(".quiz").innerHTML += `
                     <div class="perguntaQuiz">
                         <div class="tituloPergunta">${objetoQuiz[i].questions[j].title}</div>
-                        <div class="grupo">
+                        <div class="grupo">`
+                for (let k = 0; k < perguntasQuiz[j].length; k ++) {
+                    document.querySelector(".quiz").innerHTML += `
                             <div class="element">
-                                <img src="https://sm.ign.com/ign_br/screenshot/default/goku_trw2.jpg" alt="img" />
-                                <h6>gato</h6>
-                            </div>
-                            <div class="element">
-                                <img src="https://sm.ign.com/ign_br/screenshot/default/goku_trw2.jpg" alt="img" />
-                                <h6>gato</h6>
-                            </div>
-                        </div>
-                        <div class="grupo">
-                            <div class="element">
-                                <img src="https://sm.ign.com/ign_br/screenshot/default/goku_trw2.jpg" alt="img" />
-                                <h6>gato</h6>
-                            </div>
-                        </div>
+                                <img src=${perguntasQuiz[j].answer[k].image} alt="img" />
+                                <h6>${perguntasQuiz[j].answer[k].text}</h6>
+                            </div>`
+                }
+                document.querySelector(".quiz").innerHTML +=
+                        `</div>
                     </div>`
             }
             document.querySelector(".quiz").innerHTML +=`
                 <div class="perguntaQuiz">
-                    <div class="tituloPergunta">qqquuaaaaaal????</div>
-                    <img src="https://sm.ign.com/ign_br/screenshot/default/goku_trw2.jpg" alt="img" />
-                    <h6>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste cumque at, quasi maiores amet vero quo
-                        modi rerum temporibus non, quidem doloribus eos error commodi voluptates. In quisquam ipsam iure?</h6>
+                    <div class="tituloPergunta">${objetoQuiz[i].levels[0].title}</div>
+                    <img src=${objetoQuiz[i].levels[0].image} alt="img" />
+                    <h6>${objetoQuiz[i].levels[0].text}</h6>
                 </div>
                 <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
-                <div class="voltaHome" onclick="acessarHome()">Voltar pra home</div>`
+                <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
         }
     }
     document.querySelector(".quiz").classList.remove("desligado");
+    document.querySelector(".quiz").classList.add("ligado");
 }
-
 function sucessoCriarQuiz() {
 
     document.querySelector(".container-sucesso-quiz").innerHTML =`
@@ -88,5 +85,16 @@ function sucessoCriarQuiz() {
     document.querySelector(".conteiner-criacao-quiz").classList.add("desligado");
 
 }
+
+
+
+function sairPagina() {
+    console.log(document.querySelector(".ligado"))
+    document.querySelector(".ligado").classList.add("desligado");
+    document.querySelector(".ligado").classList.remove("ligado");
+    acessarHome();
+}
+
+
 
 acessarHome ()
