@@ -133,10 +133,12 @@ function pegaAlternativas(elemento){
     if(!urlR.test(listaAlternativasErradas[i].querySelector("input:nth-child(2)").value) || listaAlternativasErradas[i].querySelector("input:nth-child(1)").value===""){
       numValidas--
     }
-    infoAlternativa.text=listaAlternativasErradas[i].querySelector("input:nth-child(1)").value
-    infoAlternativa.image=listaAlternativasErradas[i].querySelector("input:nth-child(2)").value
-    infoAlternativa.isCorrectAnswer=false
-    alternativas.push(infoAlternativa)
+    else{
+      infoAlternativa.text=listaAlternativasErradas[i].querySelector("input:nth-child(1)").value
+      infoAlternativa.image=listaAlternativasErradas[i].querySelector("input:nth-child(2)").value
+      infoAlternativa.isCorrectAnswer=false
+      alternativas.push(infoAlternativa)
+    }
   }
   if(numValidas>=1){
     return alternativas
