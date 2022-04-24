@@ -17,12 +17,14 @@ function criaConteinerQuizProprios(){
 }
 
 function abreJanelaCriacao(){
+  document.querySelector(".home").classList.remove("ligado")
   document.querySelector(".home").classList.add("desligado")
   document.querySelector(".conteiner-criacao-quiz").classList.remove("desligado")
   criaFormInfoQuiz()
 }
 
 function criaFormInfoQuiz(){
+  document.querySelector(".conteiner-criacao-quiz").classList.add("ligado")
   document.querySelector(".secao-info-basica").innerHTML=`
   <h2>Comece pelo começo</h2>
   <div class="caixa-info-quiz">
