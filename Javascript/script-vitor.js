@@ -300,6 +300,8 @@ function verificaNivel() {
 
 function reiniciarQuiz() {
   window.scrollTo(0, 0);
+  cliques = 0;
+  pontos = 0;
   for (let i = 0; i < objetoQuiz.length; i++) {
     if (idQuiz == objetoQuiz[i].id) {
       perguntasQuiz = objetoQuiz[i].questions;

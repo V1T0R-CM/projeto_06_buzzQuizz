@@ -3,8 +3,8 @@ let idQuiz;
 let objetoQuiz = {};
 let perguntasQuiz = {};
 let levelsQuiz = {};
-let pontos = 0;
-let cliques = 0;
+let pontos;
+let cliques;
 let passador;
 let levelsOrdenados = [];
 let quizSerializado;
@@ -32,6 +32,8 @@ function randomizar() {
     return Math.random() - 0.5;
 }
 function acessarQuiz(elemento) {
+    cliques = 0;
+    pontos = 0;
     document.querySelector(".ligado").classList.add("desligado");
     document.querySelector(".ligado").classList.remove("ligado");
     idQuiz = elemento.classList[1].replace("a","");
@@ -123,8 +125,6 @@ function criarResultado(elemento) {
         }
     }
     setTimeout(passarPergunta, 2000)
-    cliques = 0;
-    pontos = 0;
 }
 
 
