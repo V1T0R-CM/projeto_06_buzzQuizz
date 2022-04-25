@@ -2,9 +2,11 @@ let renderizadorHome = document.querySelector(".caixaQuiz");
 let idQuiz;
 let objetoQuiz = {};
 let perguntasQuiz = {};
+let levelsQuiz = {};
 let pontos = 0;
 let cliques = 0;
 let passador;
+let levelsOrdenados = [];
 
 function acessarHome () {
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
@@ -24,9 +26,6 @@ function renderizarHome (resposta) {
             </div>`
     }
 }
-
-
-
 function randomizar() {
     return Math.random() - 0.5;
 }
@@ -36,7 +35,8 @@ function acessarQuiz(elemento) {
     idQuiz = elemento.classList[1].replace("a","");
     for (let i = 0; i < objetoQuiz.length; i ++) {
         if (idQuiz == objetoQuiz[i].id) {
-            perguntasQuiz = objetoQuiz[i].questions
+            perguntasQuiz = objetoQuiz[i].questions;
+            levelsQuiz = objetoQuiz[i].levels;
             document.querySelector(".quiz").innerHTML = `
                 <div class="topoQuiz">
                     <img src=${objetoQuiz[i].image} alt="img" />
@@ -61,13 +61,6 @@ function acessarQuiz(elemento) {
                     </div>`
             }
             document.querySelector(".quiz").innerHTML +=`
-                <div class="perguntaQuiz">
-                    <div class="tituloPergunta a${perguntasQuiz.length}">${objetoQuiz[i].levels[0].title}</div>
-                    <div class="nivelFinal">
-                        <img src=${objetoQuiz[i].levels[0].image} alt="img" />
-                        <h6>${objetoQuiz[i].levels[0].text}</h6>
-                    </div>
-                </div>
                 <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
                 <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
         }
@@ -95,14 +88,50 @@ function escolherResposta(elemento) {
     if (elemento.classList[1] === "atrue") {
         pontos ++;
     }
+    if(cliques == perguntasQuiz.length) {
+        for(let i = 0; i < levelsQuiz.length; i ++) {
+            levelsOrdenados.push(levelsQuiz[i].minValue)
+        }
+        for(let i = levelsOrdenados.length - 1; i >= 0; i --) {
+            if ((pontos / cliques * 100) >= levelsOrdenados[i]) {
+                return criarResultado(levelsOrdenados[i]);
+            }
+        }
+    }
     setTimeout(passarPergunta, 2000)
 }
-function passarPergunta() {
-    passador ++
-    passador = ".a" + passador
-    console.log(passador)
-    document.querySelector(passador).parentNode.scrollIntoView()
+
+function criarResultado(elemento) {
+    console.log(elemento)
+    console.log(levelsQuiz)
+    for(let i = 0; i < levelsQuiz.length; i ++) {
+        if (elemento === levelsQuiz[i].minValue) {
+            document.querySelector(".quiz").querySelector("button").remove()
+            document.querySelector(".quiz").querySelector(".voltaHome").remove()
+            document.querySelector(".quiz").innerHTML += `
+                <div class="perguntaQuiz">
+                    <div class="tituloPergunta a${perguntasQuiz.length}">${(pontos / cliques * 100).toFixed(2)}% de acerto: ${levelsQuiz[i].title}</div>
+                    <div class="nivelFinal">
+                        <img src=${levelsQuiz[i].image} alt="img" />
+                        <h6>${levelsQuiz[i].text}</h6>
+                    </div>
+                </div>
+                <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
+                <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
+        }
+    }
+    setTimeout(passarPergunta, 2000)
 }
+
+
+function passarPergunta() {
+    passador ++;
+    passador = ".a" + passador;
+    document.querySelector(passador).parentNode.scrollIntoView();
+}
+
+
+
 function sucessoCriarQuiz() {
 
     document.querySelector(".container-sucesso-quiz").innerHTML =`
@@ -119,7 +148,6 @@ function sucessoCriarQuiz() {
     document.querySelector(".conteiner-criacao-quiz").classList.add("desligado");
 
 }
-
 
 
 function sairPagina() {

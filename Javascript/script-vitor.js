@@ -287,7 +287,8 @@ function reiniciarQuiz(){
   window.scrollTo(0,0);
   for (let i = 0; i < objetoQuiz.length; i ++) {
     if (idQuiz == objetoQuiz[i].id) {
-        perguntasQuiz = objetoQuiz[i].questions
+        perguntasQuiz = objetoQuiz[i].questions;
+        levelsQuiz = objetoQuiz[i].levels;
         document.querySelector(".quiz").innerHTML = `
             <div class="topoQuiz">
                 <img src=${objetoQuiz[i].image} alt="img" />
@@ -312,13 +313,6 @@ function reiniciarQuiz(){
                 </div>`
         }
         document.querySelector(".quiz").innerHTML +=`
-            <div class="perguntaQuiz">
-                <div class="tituloPergunta a${perguntasQuiz.length}">${objetoQuiz[i].levels[0].title}</div>
-                <div class="nivelFinal">
-                    <img src=${objetoQuiz[i].levels[0].image} alt="img" />
-                    <h6>${objetoQuiz[i].levels[0].text}</h6>
-                </div>
-            </div>
             <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
             <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
     }
