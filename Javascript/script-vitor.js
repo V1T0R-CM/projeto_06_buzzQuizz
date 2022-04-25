@@ -58,7 +58,12 @@ function verificaInfo() {
   quantPerguntas = document.querySelector(".quant-perguntas").value
   nivelQuizz = document.querySelector(".quant-niveis").value
   let valido = true
-  const urlR = /^https:\/\//i;
+  const urlR = new RegExp('^(https?:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$', 'i')
   if (infoQuizz.title.length > 65 || infoQuizz.title.length < 20) {
     valido = false
   }
@@ -166,7 +171,12 @@ function ehHexadecimal(cor) {
 }
 
 function pegaAlternativas(elemento) {
-  const urlR = /^https:\/\//i;
+  const urlR = new RegExp('^(https?:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$', 'i')
   let alternativas = []
   let infoAlternativaCorreta = {}
   infoAlternativaCorreta.text = elemento.querySelector(".resp-correta input:nth-child(1)").value
@@ -248,7 +258,12 @@ function criaConfigNiveis() {
 
 function verificaNivel() {
   infoQuizz.levels = []
-  const urlR = /^https:\/\//i;
+  const urlR = new RegExp('^(https?:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$', 'i')
   const largura = window.screen.width
   const listaNiveis = document.querySelectorAll(".config-nivel")
   let valido = true

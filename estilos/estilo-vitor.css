@@ -32,6 +32,7 @@ button:hover{
 .privadosQuiz ion-icon{
     color:#EC362D;
     font-size: 30px;
+    cursor: pointer;
 }
 
 .privadosQuiz div{
