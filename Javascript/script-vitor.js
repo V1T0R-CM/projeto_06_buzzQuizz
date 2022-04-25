@@ -295,29 +295,35 @@ function reiniciarQuiz(){
                 <div class="pelicula"></div>
             </div>`;
         for (let j = 0; j < perguntasQuiz.length; j ++) {
-            document.querySelector(".quiz").innerHTML += `
-                <div class="perguntaQuiz">
-                    <div class="tituloPergunta">${objetoQuiz[i].questions[j].title}</div>
-                    <div class="grupo">`
-            for (let k = 0; k < perguntasQuiz[j].length; k ++) {
-                document.querySelector(".quiz").innerHTML += `
-                        <div class="element">
-                            <img src=${perguntasQuiz[j].answer[k].image} alt="img" />
-                            <h6>${perguntasQuiz[j].answer[k].text}</h6>
+            let complemento = "";
+            perguntasQuiz[j].answers.sort(randomizar)
+            for (let k = 0; k < perguntasQuiz[j].answers.length; k ++) {
+                complemento += `
+                        <div class="element a${perguntasQuiz[j].answers[k].isCorrectAnswer}" onclick="escolherResposta(this)">
+                            <img src=${perguntasQuiz[j].answers[k].image} alt="img" />
+                            <h6>${perguntasQuiz[j].answers[k].text}</h6>
+                            <div class="peliculaBranca desligado"></div>
                         </div>`
             }
-            document.querySelector(".quiz").innerHTML +=
-                    `</div>
+            document.querySelector(".quiz").innerHTML += `
+                <div class="perguntaQuiz">
+                    <div class="tituloPergunta" style="background-color: ${objetoQuiz[i].questions[j].color};">${objetoQuiz[i].questions[j].title}</div>
+                    <div class="grupo a${j}">${complemento}</div>
                 </div>`
         }
         document.querySelector(".quiz").innerHTML +=`
             <div class="perguntaQuiz">
-                <div class="tituloPergunta">${objetoQuiz[i].levels[0].title}</div>
-                <img src=${objetoQuiz[i].levels[0].image} alt="img" />
-                <h6>${objetoQuiz[i].levels[0].text}</h6>
+                <div class="tituloPergunta a${perguntasQuiz.length}">${objetoQuiz[i].levels[0].title}</div>
+                <div class="nivelFinal">
+                    <img src=${objetoQuiz[i].levels[0].image} alt="img" />
+                    <h6>${objetoQuiz[i].levels[0].text}</h6>
+                </div>
             </div>
             <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
             <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`
     }
-  }
+}
+document.querySelector(".quiz").classList.remove("desligado");
+document.querySelector(".quiz").classList.add("ligado");
+document.querySelector("body").scrollIntoView()
 }

@@ -4,7 +4,7 @@ let objetoQuiz = {};
 let perguntasQuiz = {};
 let pontos = 0;
 let cliques = 0;
-let idPergunta = {};
+let passador;
 
 function acessarHome () {
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
@@ -57,12 +57,12 @@ function acessarQuiz(elemento) {
                 document.querySelector(".quiz").innerHTML += `
                     <div class="perguntaQuiz">
                         <div class="tituloPergunta" style="background-color: ${objetoQuiz[i].questions[j].color};">${objetoQuiz[i].questions[j].title}</div>
-                        <div class="grupo">${complemento}</div>
+                        <div class="grupo a${j}">${complemento}</div>
                     </div>`
             }
             document.querySelector(".quiz").innerHTML +=`
                 <div class="perguntaQuiz">
-                    <div class="tituloPergunta">${objetoQuiz[i].levels[0].title}</div>
+                    <div class="tituloPergunta a${perguntasQuiz.length}">${objetoQuiz[i].levels[0].title}</div>
                     <div class="nivelFinal">
                         <img src=${objetoQuiz[i].levels[0].image} alt="img" />
                         <h6>${objetoQuiz[i].levels[0].text}</h6>
@@ -77,26 +77,31 @@ function acessarQuiz(elemento) {
     document.querySelector("body").scrollIntoView()
 }
 function escolherResposta(elemento) {
-    console.log(perguntasQuiz[0].answers)
+    passador = elemento.parentNode.classList[1].replace("a","");
     for (let i = 0; i < elemento.parentNode.querySelectorAll(".element").length; i++) {
         if (elemento != elemento.parentNode.querySelectorAll(".element")[i]) {
             elemento.parentNode.querySelectorAll(".element")[i].querySelector(".peliculaBranca").classList.remove("desligado");
             elemento.parentNode.querySelectorAll(".element")[i].removeAttribute("onclick");
         }
         elemento.removeAttribute("onclick");
-        console.log(elemento.parentNode.querySelectorAll(".element")[i].classList[1] == "atrue")
-        console.log(elemento.parentNode.querySelectorAll(".element")[i].classList[1])
-        if (elemento.parentNode.querySelectorAll(".element")[i].classList[1] == "atrue") {
+        if (elemento.parentNode.querySelectorAll(".element")[i].classList[1] !== "atrue") {
             elemento.parentNode.querySelectorAll(".element")[i].querySelector("h6").style.color = "#FF4B4B";
+        }else{
+            elemento.parentNode.querySelectorAll(".element")[i].querySelector("h6").style.color = "#009C22";
         }
-        elemento.parentNode.querySelectorAll(".element")[i].querySelector("h6").style.color = "#009C22";
+        
     }
     cliques ++;
-    console.log(cliques)
     if (elemento.classList[1] === "atrue") {
         pontos ++;
-        console.log("p"+pontos)
     }
+    setTimeout(passarPergunta, 2000)
+}
+function passarPergunta() {
+    passador ++
+    passador = ".a" + passador
+    console.log(passador)
+    document.querySelector(passador).parentNode.scrollIntoView()
 }
 function sucessoCriarQuiz() {
 
