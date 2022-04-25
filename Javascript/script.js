@@ -133,15 +133,17 @@ function passarPergunta() {
 
 
 
-function sucessoCriarQuiz() {
-    quizSerializado = JSON.stringify(infoQuizz);
-    localStorage.setItem("quizz", quizSerializado);
+function sucessoCriarQuiz(resposta) {
+    infoQuizz.id=resposta.data.id
+    quizzesUsuario.push(infoQuizz)
+    const quizSerializado = JSON.stringify(quizzesUsuario);
+    localStorage.setItem("quizzes", quizSerializado);
 
     document.querySelector(".container-sucesso-quiz").innerHTML =`
         <span>Seu quizz está pronto!</span>
         <div class="preQuiz" onclick="acessarQuiz()">
-            <img src="infoQuizz.image" alt="Quizz"/>
-            <span>infoQuizz.title</span>
+            <img src=${infoQuizz.image} alt="Quizz"/>
+            <span>${infoQuizz.title}</span>
             <div class="gradiente"></div>
         </div>
         <button onclick="acessarQuiz()">Acessar Quizz</button>

@@ -19,10 +19,11 @@ button:hover{
 
 .privadosQuiz{
     width: 1050px;
-    height: 180px;
     margin-top: 146px;
+    display: flex;
+    flex-direction: column;
 }
-.privadosQuiz span{
+.privadosQuiz h3{
     font-weight: 700;
     font-size: 20px;
     color: black;
@@ -39,8 +40,7 @@ button:hover{
 }
 
 .privadosQuiz.vazio{
-    display: flex;
-    flex-direction: column;
+    height: 180px;
     align-items: center;
     justify-content: space-around;
     border: 1px dashed #D5D5D5;;
@@ -63,6 +63,12 @@ button:hover{
     font-weight: 400;
     font-size: 21px;
     color: #EC362D;
+}
+
+.seusQuizes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .conteiner-criacao-quiz{
