@@ -249,11 +249,12 @@ function verificaNivel(){
       valido=false
       break
     }
+    infoNivel.image=listaNiveis[i].querySelector("input:nth-child(3)").value
     if(Number(listaNiveis[i].querySelector("input:nth-child(2)").value)<0 || Number(listaNiveis[i].querySelector("input:nth-child(2)").value)>100){
       valido=false
       break
     }
-    infoNivel.minValue=listaNiveis[i].querySelector("input:nth-child(2)").value
+    infoNivel.minValue=Number(listaNiveis[i].querySelector("input:nth-child(2)").value)
     if(Number(listaNiveis[i].querySelector("input:nth-child(2)").value)===0){
       minZero=true
     }
@@ -274,7 +275,7 @@ function verificaNivel(){
     infoQuizz.levels.push(infoNivel)
   }
   if(valido && minZero){
-    const promisse= axius.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",infoQuizz)
+    const promisse= axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",infoQuizz)
     promisse.then(sucessoCriarQuiz);
   }
   else{
