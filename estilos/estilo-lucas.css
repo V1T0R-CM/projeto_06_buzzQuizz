@@ -141,17 +141,21 @@
     top: 0;
     left: 0;
 }
-
 .container-sucesso-quiz {
-    margin-top: 110px;
+    margin-top: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #FAFAFA;
 }
 .container-sucesso-quiz span {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 700;
+}
+.container-sucesso-quiz .preQuiz {
+    margin: 45px;
+    width: 500px;
+    height: 266px;
 }
 .container-sucesso-quiz button {
     background-color: #EC362D;
@@ -160,12 +164,18 @@
     height: 44px;
     border: none;
     color: #FFF5F4;
-    font-size: 18px;
+    font-size: 21px;
+}
+.container-sucesso-quiz .voltaHome {
+    margin-top: 15px;
 }
 .preQuiz:hover {
     cursor: pointer;
 }
-.container-sucesso-quiz button:hover {
+button:hover {
+    cursor: pointer;
+}
+.voltaHome:hover {
     cursor: pointer;
 }
 
@@ -228,5 +238,20 @@
     }
     .voltaHome {
         margin-bottom: 66px;
+    }
+    .container-sucesso-quiz {
+        width: 100%;
+        margin-top: 110px;
+        padding: 17px;
+    }
+    .container-sucesso-quiz span {
+        font-size: 20px;
+    }
+    .container-sucesso-quiz .preQuiz {
+        margin: 30px 0px;
+        width: 100%;
+    }
+    .container-sucesso-quiz button {
+        font-size: 18px;
     }
 }

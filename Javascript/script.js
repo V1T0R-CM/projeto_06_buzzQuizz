@@ -7,6 +7,7 @@ let pontos = 0;
 let cliques = 0;
 let passador;
 let levelsOrdenados = [];
+let quizSerializado;
 
 function acessarHome () {
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
@@ -133,9 +134,11 @@ function passarPergunta() {
 
 
 function sucessoCriarQuiz() {
+    quizSerializado = JSON.stringify(infoQuizz);
+    localStorage.setItem("quizz", quizSerializado);
 
     document.querySelector(".container-sucesso-quiz").innerHTML =`
-        <div>Seu quizz está pronto!</div>
+        <span>Seu quizz está pronto!</span>
         <div class="preQuiz" onclick="acessarQuiz()">
             <img src="infoQuizz.image" alt="Quizz"/>
             <span>infoQuizz.title</span>
