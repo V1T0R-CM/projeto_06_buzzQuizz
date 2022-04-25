@@ -2,6 +2,9 @@ let renderizadorHome = document.querySelector(".caixaQuiz");
 let idQuiz;
 let objetoQuiz = {};
 let perguntasQuiz = {};
+let pontos = 0;
+let cliques = 0;
+let idPergunta = {};
 
 function acessarHome () {
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
@@ -42,12 +45,13 @@ function acessarQuiz(elemento) {
                 </div>`;
             for (let j = 0; j < perguntasQuiz.length; j ++) {
                 let complemento = "";
+                perguntasQuiz[j].answers.sort(randomizar)
                 for (let k = 0; k < perguntasQuiz[j].answers.length; k ++) {
                     complemento += `
-                            <div class="element" onclick="escolherResposta(this)">
+                            <div class="element a${perguntasQuiz[j].answers[k].isCorrectAnswer}" onclick="escolherResposta(this)">
                                 <img src=${perguntasQuiz[j].answers[k].image} alt="img" />
                                 <h6>${perguntasQuiz[j].answers[k].text}</h6>
-                                <div class="peliculaBranca"></div>
+                                <div class="peliculaBranca desligado"></div>
                             </div>`
                 }
                 document.querySelector(".quiz").innerHTML += `
@@ -73,7 +77,26 @@ function acessarQuiz(elemento) {
     document.querySelector("body").scrollIntoView()
 }
 function escolherResposta(elemento) {
-    console.log(elemento.parentNode)
+    console.log(perguntasQuiz[0].answers)
+    for (let i = 0; i < elemento.parentNode.querySelectorAll(".element").length; i++) {
+        if (elemento != elemento.parentNode.querySelectorAll(".element")[i]) {
+            elemento.parentNode.querySelectorAll(".element")[i].querySelector(".peliculaBranca").classList.remove("desligado");
+            elemento.parentNode.querySelectorAll(".element")[i].removeAttribute("onclick");
+        }
+        elemento.removeAttribute("onclick");
+        console.log(elemento.parentNode.querySelectorAll(".element")[i].classList[1] == "atrue")
+        console.log(elemento.parentNode.querySelectorAll(".element")[i].classList[1])
+        if (elemento.parentNode.querySelectorAll(".element")[i].classList[1] == "atrue") {
+            elemento.parentNode.querySelectorAll(".element")[i].querySelector("h6").style.color = "#FF4B4B";
+        }
+        elemento.parentNode.querySelectorAll(".element")[i].querySelector("h6").style.color = "#009C22";
+    }
+    cliques ++;
+    console.log(cliques)
+    if (elemento.classList[1] === "atrue") {
+        pontos ++;
+        console.log("p"+pontos)
+    }
 }
 function sucessoCriarQuiz() {
 
