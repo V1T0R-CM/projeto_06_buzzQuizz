@@ -44,9 +44,10 @@ function acessarQuiz(elemento) {
                 let complemento = "";
                 for (let k = 0; k < perguntasQuiz[j].answers.length; k ++) {
                     complemento += `
-                            <div class="element">
+                            <div class="element" onclick="escolherResposta(this)">
                                 <img src=${perguntasQuiz[j].answers[k].image} alt="img" />
                                 <h6>${perguntasQuiz[j].answers[k].text}</h6>
+                                <div class="peliculaBranca"></div>
                             </div>`
                 }
                 document.querySelector(".quiz").innerHTML += `
@@ -70,6 +71,9 @@ function acessarQuiz(elemento) {
     document.querySelector(".quiz").classList.remove("desligado");
     document.querySelector(".quiz").classList.add("ligado");
     document.querySelector("body").scrollIntoView()
+}
+function escolherResposta(elemento) {
+    console.log(elemento.parentNode)
 }
 function sucessoCriarQuiz() {
 
