@@ -14,6 +14,7 @@ function acessarHome () {
     promise.then(renderizarHome)
 }
 function renderizarHome (resposta) {
+    criaConteinerQuizProprios();
     document.querySelector(".home").classList.add("ligado");
     document.querySelector(".home").classList.remove("desligado");
     renderizadorHome.innerHTML = ""
@@ -122,6 +123,8 @@ function criarResultado(elemento) {
         }
     }
     setTimeout(passarPergunta, 2000)
+    cliques = 0;
+    pontos = 0;
 }
 
 
