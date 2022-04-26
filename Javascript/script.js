@@ -150,19 +150,58 @@ function sucessoCriarQuiz(resposta) {
 
     document.querySelector(".container-sucesso-quiz").innerHTML =`
         <span>Seu quizz está pronto!</span>
-        <div class="preQuiz" onclick="acessarQuiz()">
+        <div class="preQuiz" onclick="acessarQuizProprio()">
             <img src=${infoQuizz.image} alt="Quizz"/>
             <span>${infoQuizz.title}</span>
             <div class="gradiente"></div>
         </div>
-        <button onclick="acessarQuiz()">Acessar Quizz</button>
+        <button onclick="acessarQuizProprio()">Acessar Quizz</button>
         <div class="voltaHome" onclick="acessarHome()">Voltar pra home</div>`
 
     document.querySelector(".container-sucesso-quiz").classList.remove("desligado");
-    document.querySelector(".conteiner-criacao-quiz").classList.add("desligado");
-
+    document.querySelector(".container-sucesso-quiz").classList.add("ligado");
 }
 
+function acessarQuizProprio() {
+    cliques = 0;
+    pontos = 0;
+    document.querySelector(".ligado").classList.add("desligado");
+    document.querySelector(".ligado").classList.remove("ligado");
+    document.querySelector(".ligado").classList.add("desligado");
+    document.querySelector(".ligado").classList.remove("ligado");
+    
+    perguntasQuiz = quizzesUsuario[quizzesUsuario.length - 1].questions;
+    levelsQuiz = quizzesUsuario[quizzesUsuario.length - 1].levels;
+    document.querySelector(".quiz").innerHTML = `
+        <div class="topoQuiz">
+            <img src=${quizzesUsuario[quizzesUsuario.length - 1].image} alt="img" />
+            <span>${quizzesUsuario[quizzesUsuario.length - 1].title}</span>
+            <div class="pelicula"></div>
+        </div>`;
+    for (let j = 0; j < perguntasQuiz.length; j ++) {
+        let complemento = "";
+        perguntasQuiz[j].answers.sort(randomizar)
+        for (let k = 0; k < perguntasQuiz[j].answers.length; k ++) {
+            complemento += `
+                    <div class="element a${perguntasQuiz[j].answers[k].isCorrectAnswer}" onclick="escolherResposta(this)">
+                        <img src=${perguntasQuiz[j].answers[k].image} alt="img" />
+                        <h6>${perguntasQuiz[j].answers[k].text}</h6>
+                        <div class="peliculaBranca desligado"></div>
+                    </div>`
+        }
+        document.querySelector(".quiz").innerHTML += `
+            <div class="perguntaQuiz">
+                <div class="tituloPergunta" style="background-color: ${perguntasQuiz[j].color};">${perguntasQuiz[j].title}</div>
+                <div class="grupo a${j}">${complemento}</div>
+            </div>`
+    }
+    document.querySelector(".quiz").innerHTML +=`
+        <button onclick="reiniciarQuiz()">Reiniciar Quizz</button>
+        <div class="voltaHome" onclick="sairPagina()">Voltar pra home</div>`       
+    document.querySelector(".quiz").classList.remove("desligado");
+    document.querySelector(".quiz").classList.add("ligado");
+    document.querySelector("body").scrollIntoView()
+}
 
 function sairPagina() {
     document.querySelector(".ligado").classList.add("desligado");

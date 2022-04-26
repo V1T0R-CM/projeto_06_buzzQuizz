@@ -309,6 +309,9 @@ function verificaNivel() {
     promisse.then(sucessoCriarQuiz);
     document.querySelectorAll(".loading")[1].classList.add("ligado")
     document.querySelectorAll(".loading")[1].classList.remove("desligado")
+    document.querySelector(".secao-cria-niveis").classList.add("desligado")
+    document.querySelector(".container-criacao-quiz").classList.add("desligado")
+    document.querySelector(".container-criacao-quiz").classList.remove("ligado")
   }
   else {
     alert("Preencha os dados corretamente")
