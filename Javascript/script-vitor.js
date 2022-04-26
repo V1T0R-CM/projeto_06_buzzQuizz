@@ -288,7 +288,7 @@ function verificaNivel() {
     if (Number(listaNiveis[i].querySelector("input:nth-child(2)").value) === 0) {
       minZero = true
     }
-    if (largura > 600) {
+    if (largura > 1100) {
       if (listaNiveis[i].querySelector("input:nth-child(4)").value === "" || listaNiveis[i].querySelector("input:nth-child(4)").value.length < 30) {
         valido = false
         break
