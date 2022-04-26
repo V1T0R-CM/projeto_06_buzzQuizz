@@ -12,8 +12,12 @@ let quizSerializado;
 function acessarHome () {
     let promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
     promise.then(renderizarHome)
+    document.querySelectorAll(".loading")[0].classList.add("ligado")
+    document.querySelectorAll(".loading")[0].classList.remove("desligado")
 }
 function renderizarHome (resposta) {
+    document.querySelectorAll(".loading")[0].classList.add("desligado")
+    document.querySelectorAll(".loading")[0].classList.remove("ligado")
     criaConteinerQuizProprios();
     document.querySelector(".home").classList.add("ligado");
     document.querySelector(".home").classList.remove("desligado");
@@ -137,6 +141,8 @@ function passarPergunta() {
 
 
 function sucessoCriarQuiz(resposta) {
+    document.querySelectorAll(".loading")[1].classList.add("desligado")
+    document.querySelectorAll(".loading")[1].classList.remove("ligado")
     infoQuizz.id=resposta.data.id
     quizzesUsuario.push(infoQuizz)
     const quizSerializado = JSON.stringify(quizzesUsuario);

@@ -307,6 +307,8 @@ function verificaNivel() {
   if (valido && minZero) {
     const promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", infoQuizz)
     promisse.then(sucessoCriarQuiz);
+    document.querySelectorAll(".loading")[1].classList.add("ligado")
+    document.querySelectorAll(".loading")[1].classList.remove("desligado")
   }
   else {
     alert("Preencha os dados corretamente")
